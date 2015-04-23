@@ -17,3 +17,8 @@
     * Rig up the receiver module to workd with the GPIO on the RPi.
     * Code the software
 
+
+## Potential problems
+
+* Will the be too much triggering noise from other products on the
+  receiver end?
