@@ -12,6 +12,7 @@
 
 ## Update packages in terminal
 
+Fire up a terminal and run the following commands. Might take a some time to complete
 ```
 sudo apt-get update
 sudo apt-get upgrade
