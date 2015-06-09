@@ -30,13 +30,8 @@ sudo apt-get dist-upgrade
 sudo sed -i 's/wheezy/jessie/g' /etc/apt/sources.list
 ```
 
-and then run the update -> upgrade -> dist-upgrade cycle again.  Once
-you start the actual upgrade you will be given a choice to manually
-restart any currently running services. Manually restart services is
-recommended as this give you an option to restart services selectively
-eg. SSH etc. Furthermore, if you are performing the update via SSH and
-have no physical access to your Raspberry PI make sure not to disable
-SSH root access.
+~~ and then run the update -> upgrade -> dist-upgrade cycle again.  Once you start the actual upgrade you will be given a choice to manually restart any currently running services. Manually restart services is recommended as this give you an option to restart services selectively eg. SSH etc. Furthermore, if you are performing the update via SSH and have no physical access to your Raspberry PI make sure not to disable
+SSH root access. ~~
 
 ```
 Disable SSH password authentication for root?  NO
