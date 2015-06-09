@@ -24,7 +24,7 @@ After the raspberry starts up again run a terminal and type
 sudo apt-get dist-upgrade
 ```
 
-I also upgraded to jessie. This might not be relevant when that standard raspbian image includes jessie
+~~I also upgraded to jessie. This might not be relevant when that standard raspbian image includes jessie~~
 
 ```
 sudo sed -i 's/wheezy/jessie/g' /etc/apt/sources.list
