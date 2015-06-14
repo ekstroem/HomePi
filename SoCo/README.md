@@ -13,7 +13,7 @@ sudo apt-get install python3
 sudo apt-get install python3-pip
 ```
 
-Instlal SoCo
+Install SoCo
 
 ```
 pip-3.2 install soco
