@@ -37,6 +37,13 @@ Disable SSH password authentication for root?  NO
 ```
 
 
+## Run fsck on boot if necessary
+
+Edit `/etc/default/rcS` and set `FSCKFIX=yes` to avoid a manual fsck
+check. This will add some extra time to your boot but on the other
+hand this will allow the raspberry to recover automatically from file
+system errors!
+
 
 ## Enable WiFi
 
