@@ -16,8 +16,7 @@ or from [this YouTube clip](https://www.youtube.com/watch?v=RHJVyMYJ1XQ).
 * Raspberry Pi
 * A 433 MHz receiver
 * A door bell. I used this one
-  ![alt text](https://github.com/ekstroem/HomePi/doorbell/images/doorbell.jpg
-  "My door bell")
+![alt text](https://github.com/ekstroem//HomePi/blob/master/doorbell/images/bell.jpg  "My door bell")
   
 
 
