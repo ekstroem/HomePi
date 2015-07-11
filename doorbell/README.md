@@ -33,13 +33,13 @@ pins. I used the one closest to the GND-pin.
 ## Immediate to do
 
 * Use the wiring/arduino modules This means that I should
-    * check the coltage on our regular door bell.
+    * check the voltage on our regular door bell.
     * Hook up the transmitter module so that it sends a signal when the button is pushed
     * Check that it works with the arduino
     * Rig up the receiver module to workd with the GPIO on the RPi.
     * Code the software
 
-## Software
+## Software - part 1
 
 WiringPi is a library used to control GPIO in C and much more. It is
 installed with the following commands
