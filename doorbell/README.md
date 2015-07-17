@@ -30,6 +30,24 @@ Arduinos. In this project however we will only need to use one of the
 pins. I used the one closest to the GND-pin.
 
 
+I'm not entirely strong on electronics but it seems to me from reading
+various blogs and webpages that a
+[voltage divider](http://elinux.org/RPi_GPIO_Interface_Circuits) is a
+good idea to reduce the voltage from 5 V to 3.3 V. The Raspberry Pi
+provides 5V but the GPIO should only have 3.3 V as input. The
+construction is seen in the link above and the two resistors needed
+are
+
+| 18k | 33k |
+|---|---|
+| Brown   | Orange |
+| Gray    | Orange |
+| Orange  | Orange |
+| Gold    | Gold   |
+
+
+
+
 ## Immediate to do
 
 * Use the wiring/arduino modules This means that I should
