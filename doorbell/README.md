@@ -1,13 +1,13 @@
 # General idea
 
-* Use a 433 MHz transmitter to send a wireless signal to the raspberry when the door bell button is pushed
-* Use the RPi to make a notification
+* Use a 433 MHz transmitter to send a wireless signal to the RPi when the door bell button is pushed
+* Use the RPi to make a tweet notification
 
 My current door bell is a wireless one that already uses a 433 MHz
 signal so there is no need to rig up a transmitter. I just need to
 capture the signal that it sends out.
 
-Most of the information here was copied verbatim from
+A lot of the information here was copied verbatim from 
 [this page](http://www.princetronics.com/how-to-read-433-mhz-codes-w-raspberry-pi-433-mhz-receiver/)
 or from [this YouTube clip](https://www.youtube.com/watch?v=RHJVyMYJ1XQ).
 
@@ -15,9 +15,8 @@ or from [this YouTube clip](https://www.youtube.com/watch?v=RHJVyMYJ1XQ).
 
 * Raspberry Pi
 * A 433 MHz receiver
-* A door bell. I used this one
-![alt text](https://github.com/ekstroem/HomePi/master/doorbell/images/bell.jpg  "My door bell")
-  
+* A wireless door bell. I used this one ![alt text](https://github.com/ekstroem/HomePi/master/doorbell/images/bell.jpg  "My door bell")
+* Two resistors 18k Ohm and 33k Ohm
 
 
 ## Hardware installation
