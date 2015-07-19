@@ -18,6 +18,8 @@ following image (taken from
 that I'm using a version 1 RPi model B. The version 2 has 40 pins on
 the GPIO.
 
+![GPIO pin layout on RPi B v1.2 ](https://github.com/ekstroem/HomePi/blob/master/doorbell/images/gpio.png) 
+
 
 I'm not entirely strong on electronics but it seems to me from reading
 various blogs and webpages that a
