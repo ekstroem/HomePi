@@ -50,6 +50,95 @@ we will tweak to our use.
 
 
 ```cpp
+/*
+  doorbell
+  
+  Hacked from http://code.google.com/p/rc-switch/  
+  by @justy to provide a handy RF code sniffer
+
+  Further Hacked by ClausEkstrom
+  https://github.com/ekstroem/HomePi
+  
+*/
+
+#include "RCSwitch.h"
+#include <stdlib.h>
+#include <stdio.h>
+#include <time.h>     
+     
+RCSwitch mySwitch;
+ 
+int main(int argc, char *argv[]) {
+
+  // This gets the current time
+  time_t newtime, lasttime;
+  struct tm * timestruct = localtime(&newtime);
+  char timestring[30];
+  int waitingtime = 0;
+  int secondsbetweenrings = 10;
+  unsigned long bellcode = 13066068;  // This is the bell code for my bell
+  char buf[128];
+
+  lasttime = time(0);
+  newtime = lasttime;
+  timestruct = localtime(&newtime);
+  strftime (timestring, 30, "%c" ,timestruct);
+
+  printf ( "%s --- Starting listener\n",  timestring);
+
+  // This pin is not the first pin on the RPi GPIO header!
+  // Consult https://projects.drogon.net/raspberry-pi/wiringpi/pins/
+  // for more information.
+  int PIN = 2;
+  
+  if(wiringPiSetup() == -1)
+    return 0;
+  
+  mySwitch = RCSwitch();
+  mySwitch.enableReceive(PIN);  // Receiver on inerrupt 0 => that is pin #2
+  
+  unsigned long value;
+  
+  while(1) {
+    
+    if (mySwitch.available()) {
+      
+      value = mySwitch.getReceivedValue();
+      
+      if (value == 0) {
+	printf("Unknown encoding\n");
+      } else {    
+	// This is where the exciting things happen
+	
+	// Figure out what time it is and compute the number of seconds since last ring
+	// Can use that to give a minimum time between rings to prevent events from "ghosting" or noise
+	newtime = time(0);
+	timestruct = localtime(&newtime);
+	waitingtime = (int) difftime(newtime, lasttime);
+
+	strftime (timestring, 30, "%c" ,timestruct);
+
+	// Print a registration for a log file   
+	printf("%s --- Received %lu\n", timestring,  mySwitch.getReceivedValue());
+
+	// Check that the code is indeed from the doorbell. This should be changed depending on the actual door bell signal
+	if (mySwitch.getReceivedValue() == bellcode) {
+	  lasttime = newtime; 
+	
+	  if (waitingtime>secondsbetweenrings) {	    
+	    // printf("  Now I want to tweet!\n");
+	    strftime (timestring, 30, "%c" ,timestruct);
+	    snprintf(buf, sizeof(buf), "su - pi -c 'python3 /home/pi/bin/tweet.py Ding Dong! Door bell rang on %s'", timestring);
+	    // Now this is not that secure since we have no control over tweet.py
+	    system(buf);
+	  }
+	}	
+      }      
+      mySwitch.resetAvailable();      
+    }  
+  }
+  exit(0);
+}
 
 
 
@@ -58,12 +147,26 @@ we will tweak to our use.
 
 ## Creating the Python script
 
+I wanted to run the script using python3 which gave a few
+problems. First the twython module should be installed for python3.
+
+```
+sudo apt-get install python3-setuptools
+sudo easy_install3 pip
+```
+This gives us access to `pip3.2` that is used to install modules for
+python3.
+
+```
+sudo pip3.2 install twython
+```
+
 Create the following python script. I named the file `tweet.py` and
 made sure it was executable. The keys are *not* the correct ones (in
 case you were wondering).
 
 ```python
-#!/usr/bin/env python
+#!/usr/bin/env python3
 import sys
 from twython import Twython
 
@@ -80,7 +183,7 @@ api = Twython(apiKey,apiSecret,accessToken,accessTokenSecret)
 
 if len(tweetStr)>0 :
     api.update_status(status=tweetStr)
-    print "Tweeted: " + tweetStr
+    print ("Tweeted: " + tweetStr)
 ```
 
 
