@@ -48,6 +48,10 @@ we will tweak to our use.
 
 ## Hacking the C code
 
+This is a hacked version of the `RFSniffer` program that comes with
+the 433Utils installed above. Basically I took the the `RFSniffer.cpp`
+source code and used it as a basis for the  code.  The following code
+is saved as `doorbell.cpp`.
 
 ```cpp
 /*
@@ -56,7 +60,7 @@ we will tweak to our use.
   Hacked from http://code.google.com/p/rc-switch/  
   by @justy to provide a handy RF code sniffer
 
-  Further Hacked by ClausEkstrom
+  Further Hacked by Claus Ekstrøm
   https://github.com/ekstroem/HomePi
   
 */
@@ -76,7 +80,9 @@ int main(int argc, char *argv[]) {
   char timestring[30];
   int waitingtime = 0;
   int secondsbetweenrings = 10;
-  unsigned long bellcode = 13066068;  // This is the bell code for my bell
+  
+  // This is the bell code for my bell. You should change this to match your own door bell
+  unsigned long bellcode = 13066068;  
   char buf[128];
 
   lasttime = time(0);
@@ -139,10 +145,14 @@ int main(int argc, char *argv[]) {
   }
   exit(0);
 }
-
-
-
 ```
+This can be compiled directly or by adding the following two lines to
+  the `Makefile` in the `RPi__utils` directory. 
+```
+doorbell: RCSwitch.o doorbell.o
+	$(CXX) $(CXXFLAGS) $(LDFLAGS) $+ -o $@ -lwiringPi
+```
+Then run `make` and you should have a `doorbell`program that you can use.
 
 
 ## Creating the Python script
