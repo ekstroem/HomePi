@@ -56,7 +56,5 @@ The `rsync-exclude.txt` file shown below lists the files that are unnecessary to
 Network Trash Folder
 Temporary Items
 
-.bash_history
 /etc/fake-hwclock.data
-/var/lib/rpimonitor/stat/
 ```
