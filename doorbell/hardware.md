@@ -22,13 +22,14 @@ the GPIO.
 
 
 I'm not entirely strong on electronics but it seems to me from reading
-various blogs and webpages that a
-[voltage divider](http://elinux.org/RPi_GPIO_Interface_Circuits) is a
-good idea to reduce the voltage from 5 V to 3.3 V. The 433 MHz
-receiver expects 5 V but the input pins on the RPi should not served
-more than 3.3 V. Therefore we should to reduce the input voltage on
-the GPIO from 5 V to 3.3 V.  The construction is seen in the link
-above and the two resistors needed are
+various books, blogs and webpages that a
+[voltage divider](http://elinux.org/RPi_GPIO_Interface_Circuits) that
+reduces the voltage from 5 V to 3.3 V is necessary to prevent the risk
+of frying the RPi. We need to do reduce the input voltage on the GPIO
+from 5 V to 3.3 V because the 433 MHz receiver expects 5 V but the
+input pins on the RPi should not served more than 3.3 V.  The
+construction is seen in the link above and the two resistors I used
+were 
 
 | 18k | 33k |
 |---|---|
@@ -37,17 +38,24 @@ above and the two resistors needed are
 | Orange  | Orange |
 | Gold    | Gold   |
 
-I was not aware of this when I threw
-the circut together the first time and the 5 V did not fry my RPi. I
-tried using the 3.3 V as input to the receiver but then I could not
-receive any signals from the door bell.
+Any two resistors where one has roughly have the resistance of the
+other would work.
+
+I was not aware of the need for a voltage divider when I threw the
+circut together the first time and the 5 V did luckily not fry my RPi
+but I'm not taking any chances so I added the voltage divider. To be
+honest I throught that since the RPi GPIO can provide 5 V by itself that it
+also could take 5 V. Apparently not.  I tried using the 3.3 V as input to
+the receiver but then I could not receive any signals from the door
+bell, so I'm not sure if the 433 receiver works correctly when it is
+underpowered (maybe not a big surprise there).
 
 Specifically I connect pin 13 on the RPi to the 5 VCC on the receiver.
 
 
-
-For the antenna I took a 20 cm long wire coiled up around a pencil and
-attached it to the receiver.
+For the antenna I took a 50 cm long wire coiled up around a pencil and
+attached it to the receiver. There are probably something clever you
+could do with computing the ideal length, but I didn't.
 
 
 ### 
