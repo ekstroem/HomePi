@@ -50,12 +50,18 @@ the receiver but then I could not receive any signals from the door
 bell, so I'm not sure if the 433 receiver works correctly when it is
 underpowered (maybe not a big surprise there).
 
-Specifically I connect pin 13 on the RPi to the 5 VCC on the receiver.
+Specifically I connect pin 13 on the RPi to the 5 VCC on the
+receiver. I put everything on a breadboard to make it somewhat
+compact. A (slightly crappy) image is shown below.
 
+![Final version](https://github.com/ekstroem/HomePi/blob/master/doorbell/images/final.jpg) 
 
 For the antenna I took a 50 cm long wire coiled up around a pencil and
 attached it to the receiver. There are probably something clever you
-could do with computing the ideal length, but I didn't.
+could do with computing the ideal length, but I didn't. However I
+found out that it I run the RPi with a power supply wiht 1 amp then I
+had trouble receiving the signal. If I use a power supply with 2 amps
+then things are fine and dandy.
 
 
 ### 
