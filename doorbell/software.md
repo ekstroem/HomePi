@@ -53,6 +53,8 @@ the 433Utils installed above. Basically I took the the `RFSniffer.cpp`
 source code and used it as a basis for the  code.  The following code
 is saved as `doorbell.cpp`.
 
+See the note below though!
+
 ```cpp
 /*
   doorbell
@@ -146,13 +148,33 @@ int main(int argc, char *argv[]) {
   exit(0);
 }
 ```
+
 This can be compiled directly or by adding the following two lines to
   the `Makefile` in the `RPi__utils` directory. 
+
 ```
 doorbell: RCSwitch.o doorbell.o
 	$(CXX) $(CXXFLAGS) $(LDFLAGS) $+ -o $@ -lwiringPi
 ```
-Then run `make` and you should have a `doorbell`program that you can use.
+
+Then run `make` and you should have a `doorbell` program that you can use.
+
+### Interrupt-based triggering
+
+The code above works fine but is a cpu-hog, and it would be better to
+write the program around an interrupt such that it is triggered when a
+signal is received instead of polling the GPIO several times per
+second.
+
+I have found a set of web pages that describes how to do this in
+python, and possibly it could be set up using the `wiringPiISR` in the
+C++ code listed above. I havenøt found a final solution to this yet.
+
+* http://raspi.tv/2013/how-to-use-interrupts-with-python-on-the-raspberry-pi-and-rpi-gpio
+* http://www.themagpi.com/issue/issue-7/article/interrupts-and-other-activities-with-gpio-pins/
+* http://wiringpi.com/reference/priority-interrupts-and-threads/
+* https://www.raspberrypi.org/forums/viewtopic.php?f=44&t=7509&start=25
+
 
 
 ## Creating the Python script
