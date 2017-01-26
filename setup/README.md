@@ -16,6 +16,7 @@ Fire up a terminal and run the following commands. Might take a some time to com
 ```
 sudo apt-get update
 sudo apt-get upgrade
+sudo apt-get install rpi-update
 sudo rpi-update
 sudo shutdown -r now
 ```
