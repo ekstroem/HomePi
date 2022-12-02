@@ -22,4 +22,5 @@ I was able to fix the issue using these steps:
         #/dev/mmcblk0p2  /  ext4 ro 0 1
 
  If `/etc/fstab` doesn't get changed back to normal, then the system will always mount the `rootfs` as `read-only`.
+ 
 5.  Profit.
